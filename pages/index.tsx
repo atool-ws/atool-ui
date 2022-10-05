@@ -59,7 +59,7 @@ const HeroSection = () => {
                             flexWrap="wrap"
                         >
                             {features.map((feature, index) => (
-                                <Stack key={index} direction={{ base: 'row', md: 'column' }} spacing={2}>
+                                <Stack key={index} direction={{ base: 'row', md: 'column' }} spacing={1}>
                                     <Stack direction="column" spacing={2}>
                                         <Text fontSize="md" fontWeight="800">
                                             {feature.title}
@@ -68,14 +68,15 @@ const HeroSection = () => {
                                             {feature.detail}
                                         </Text>
                                     </Stack>
+                                    <Stack direction="column" >
                                     <Image src={feature.icon} />
-
+                                    </Stack>
 
                                 </Stack>
                             ))}
                         </Stack>
                         <Stack
-                            direction={{ base: 'column', sm: 'row' }}
+                            direction={{ base: 'column', md: 'row' }}
                             spacing={{ base: 0, sm: 2 }}
                             flexWrap="wrap"
                         >
