@@ -1,0 +1,36 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qr-code-ui-deployment
+  labels:
+    app: qr-code-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qr-code-ui
+  template:
+    metadata:
+      labels:
+        app: qr-code-ui
+    spec:
+      containers:
+        - name: qr-code-ui
+          image: pedrofraca/atool-ui:2d5dc5b
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qr-code-ui-service
+spec:
+  selector:
+    app: qr-code-ui
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
