@@ -2,8 +2,10 @@
 import { Login } from '../login/Login';
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/router';
-import { Link, Flex, Box, Text, } from '@chakra-ui/react'
-
+import { Link, Flex, Box, Text, Container } from '@chakra-ui/react'
+import Head from 'next/head';
+import Meta from 'next'
+import { useColorModeValue } from '@chakra-ui/react';
 
 export default function Layout(props) {
     // const data = useSession();
@@ -18,6 +20,9 @@ export default function Layout(props) {
     // }
     return (
         <>
+            <Head>
+            <meta key="theme-color-light" name="theme-color" content="#dfe8eb"/>
+            </Head>
             <Flex bg='brand.900' p="10px">
                 <Box flex='1'>
                     <Link href='/'>
@@ -26,7 +31,9 @@ export default function Layout(props) {
                 </Box>
 
             </Flex>
-            {props.children}
+            <Container maxW="8xl" px={{ base: 6, md: 10 }} py={14}>
+                {props.children}
+            </Container>
         </>
     )
 }

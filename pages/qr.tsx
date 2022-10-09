@@ -84,12 +84,9 @@ export default function Form(props: { forms: [string] }) {
 
     const handleInputChange = (e) => {
         data[e.target.id] = e.target.value;
-        //setData(data);=
-        console.log(data)
-        console.log(form)
         var qr_content = ""
         for (let [key, value] of Object.entries(data)) {
-            if(value) {
+            if (value) {
                 qr_content = `${qr_content}${key}:${value};`
             }
         }
@@ -117,51 +114,52 @@ export default function Form(props: { forms: [string] }) {
 
     return (
         <Layout>
-            <Stack p="100px">
-                <Text fontSize='6xl' mb="100px">
-                    Generate your QR Code
-                </Text>
-
-
-                <Grid templateColumns='repeat(5, 1fr)' gap={4}>
-                    <GridItem colSpan={2} h='10' >
-                        <Select id="Patata" onChange={handleFormSelect} placeholder='Select option'>
-                            {forms.map((item: IForm) => {
-                                return <option value={item.name} id={item.name}>
+            <Text fontSize='6xl' mb="100px">
+                Generate your QR Code
+            </Text>
+            <Flex>
+                <Stack flex='1' direction={{ base: 'column', md: 'row' }} spacing={20}>
+                    <Stack flex='1' >
+                        <Select id="qr_option" onChange={handleFormSelect} placeholder='Select option'>
+                            {forms.map((item: IForm, index) => {
+                                return <option key={index} value={item.name} id={item.name}>
                                     {item.name}
                                 </option>;
                             })}
                         </Select>
                         {form &&
-                            <FormControl>
+                            <FormControl w="m">
                                 {
-                                    form.items.map(item => {
+                                    form.items.map((item, index) => {
                                         if (item.type === EFormType.option) {
-                                            return <><FormLabel htmlFor='address'>{item.key}</FormLabel><Select id={item.key} onChange={handleInputChange} placeholder='Select option'>
-                                                {item.values.map(option => {
-                                                    return <option value={option === "blank" ? "" : option} id={option}>
-                                                        {option}
-                                                    </option>;
-                                                })}
-                                            </Select></>
+                                            return <>
+                                                <FormLabel key={`label${index}`}>{item.key}</FormLabel>
+                                                <Select key={`select${index}`} onChange={handleInputChange} placeholder='Select option'>
+                                                    {item.values.map(option => {
+                                                        return <option key={option} value={option === "blank" ? "" : option} id={option} >
+                                                            {option}
+                                                        </option>;
+                                                    })}
+                                                </Select></>
                                         } else {
-                                            return <><FormLabel htmlFor='address'>{item.key}</FormLabel><Input onChange={handleInputChange} id={item.key} type='text' /></>
+                                            return <><FormLabel key={`label${index}`}>{item.key}</FormLabel><Input onChange={handleInputChange} key={`select${item.key}`} type='text' /></>
                                         }
                                     }
                                     )}
-
                             </FormControl>
                         }
+                    </Stack>
 
-                    </GridItem>
-                    <GridItem colStart={4} colEnd={6} h='10' >
+
+                    <Stack flex='1'  direction="column" alignItems={'center'}>
                         <Box p={5} shadow='md' borderWidth='1px' alignItems={'center'}>
                             <Image src={image} alt='Your QR' align={'center'} />
                             <Text as='i'>Right click and Save Image as in order to download the QR</Text>
                         </Box>
-                    </GridItem>
-                </Grid>
-            </Stack>
+                    </Stack>
+                </Stack>
+            </Flex>
+
         </Layout>
 
     )

@@ -60,7 +60,7 @@ const HeroSection = () => {
                         >
                             {features.map((feature, index) => (
                                 <Stack key={index} direction={{ base: 'row', md: 'column' }} spacing={1}>
-                                    <Stack direction="column" spacing={2}>
+                                    <Stack flex='1' direction="column" spacing={2}>
                                         <Text fontSize="md" fontWeight="800">
                                             {feature.title}
                                         </Text>
@@ -68,7 +68,7 @@ const HeroSection = () => {
                                             {feature.detail}
                                         </Text>
                                     </Stack>
-                                    <Stack direction="column" >
+                                    <Stack flex='1' direction="column" >
                                     <Image src={feature.icon} />
                                     </Stack>
 

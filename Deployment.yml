@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: qr-code-ui
-          image: pedrofraca/atool-ui:396d222
+          image: pedrofraca/atool-ui:a0dacbc
           ports:
             - containerPort: 3000
               protocol: TCP
