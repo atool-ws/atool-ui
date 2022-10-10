@@ -1,11 +1,8 @@
 
-import { Login } from '../login/Login';
-import { useSession, signIn, signOut } from "next-auth/react"
-import { useRouter } from 'next/router';
 import { Link, Flex, Box, Text, Container } from '@chakra-ui/react'
 import Head from 'next/head';
-import Meta from 'next'
-import { useColorModeValue } from '@chakra-ui/react';
+
+
 
 export default function Layout(props) {
     // const data = useSession();

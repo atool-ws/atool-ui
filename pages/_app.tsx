@@ -1,6 +1,5 @@
 import { extendTheme, ChakraProvider } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
-import { SessionProvider } from "next-auth/react"
 import Fonts from './fonts'
 
 const breakpoints = createBreakpoints({
@@ -57,9 +56,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-      <SessionProvider session={session}>
         <Component {...pageProps} />
-      </SessionProvider>
     </ChakraProvider>
   )
 }
