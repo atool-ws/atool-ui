@@ -86,6 +86,7 @@ export default function Form(props: { forms: [string] }) {
         data[e.target.id] = e.target.value;
         var qr_content = ""
         for (let [key, value] of Object.entries(data)) {
+            
             if (value) {
                 qr_content = `${qr_content}${key}:${value};`
             }
@@ -134,7 +135,7 @@ export default function Form(props: { forms: [string] }) {
                                         if (item.type === EFormType.option) {
                                             return <>
                                                 <FormLabel key={`label${index}`}>{item.key}</FormLabel>
-                                                <Select key={`select${index}`} onChange={handleInputChange} placeholder='Select option'>
+                                                <Select key={`select${index}`} id={item.key} onChange={handleInputChange} placeholder='Select option'>
                                                     {item.values.map(option => {
                                                         return <option key={option} value={option === "blank" ? "" : option} id={option} >
                                                             {option}
@@ -142,7 +143,7 @@ export default function Form(props: { forms: [string] }) {
                                                     })}
                                                 </Select></>
                                         } else {
-                                            return <><FormLabel key={`label${index}`}>{item.key}</FormLabel><Input onChange={handleInputChange} key={`select${item.key}`} type='text' /></>
+                                            return <><FormLabel key={`label${index}`}>{item.key}</FormLabel><Input onChange={handleInputChange} id={item.key} key={item.key} type='text' /></>
                                         }
                                     }
                                     )}
