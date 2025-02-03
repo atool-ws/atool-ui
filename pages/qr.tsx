@@ -116,7 +116,6 @@ export default function Form(props: { forms: [string] }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "https://api.atool.ws",
         },
         body: JSON.stringify({ data: qr_code }),
       };

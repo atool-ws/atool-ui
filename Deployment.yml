@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
         - name: qr-code-ui
-          image: pedrofraca/atool-ui:09e9979
+          image: pedrofraca/atool-ui:14cf853
           ports:
             - containerPort: 3000
               protocol: TCP
